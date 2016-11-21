@@ -74,7 +74,7 @@ public class Solution {
 			}
 			Solution.printTheChosenIceCreamFlavour(amountOfMoney, iceCreamMap);
 
-			//System.out.println(iceCreamMap);
+			// System.out.println(iceCreamMap);
 			numberOfTrips--;
 		}
 		scanner.close();
@@ -91,12 +91,15 @@ public class Solution {
 			if (Collections.binarySearch(flavoursCost, moneyPool) >= 0) {
 				if (Collections.binarySearch(flavoursCost, count) >= 0) {
 					int keyFromByValue = getKeyFromByValue(iceCreamMap, count);
-					if(moneyPool == count){
+					if (moneyPool == count) {
 						iceCreamMap.remove(keyFromByValue);
 					}
 					int keyFromByValue2 = getKeyFromByValue(iceCreamMap, moneyPool);
-					System.out.println(keyFromByValue + " "
-							+ keyFromByValue2);
+					// since expected output wants this to be sort. :(
+					if (keyFromByValue < keyFromByValue2)
+						System.out.println(keyFromByValue + " " + keyFromByValue2);
+					else
+						System.out.println(keyFromByValue2 + " " + keyFromByValue);
 					break;
 				}
 			}
