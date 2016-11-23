@@ -1,4 +1,7 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -22,12 +25,39 @@ public class Solution {
 		final Map<Integer, Integer> secondListToCount = new HashMap<>();
 		getList(scanner, lengthOfSecondList, secondListToCount);
 		// System.out.println(firstListToCount + " " + secondListToCount);
+		final int totalCountMissing = lengthOfSecondList - lengthOfFirstList;
+		final List<Integer> listOfMissingNumber = new ArrayList<>();
+		for (int i = 1; i <= lengthOfSecondList; i++) {
+			if (totalCountMissing == listOfMissingNumber.size()) {
+				break;
+			}
+			for (final Integer number : secondListToCount.keySet()) {
+				if (firstListToCount.containsKey(number)) {
+					final int differenceInFrequencyOfNumber = secondListToCount.get(number)
+							- firstListToCount.get(number);
+					if (differenceInFrequencyOfNumber != 0) {
+						// while (differenceInFrequencyOfNumber != 0) {
+						listOfMissingNumber.add(number);
+						// differenceInFrequencyOfNumber--;
+						// }
+					}
+				} else {
+					listOfMissingNumber.add(number);
+				}
+			}
+
+		}
+
+		Collections.sort(listOfMissingNumber);
+		for (final Integer missingNumber : listOfMissingNumber) {
+			System.out.print(missingNumber + " ");
+		}
 	}
 
-	private static void getList(final Scanner scanner, final int lengthOfFirstList,
+	private static void getList(final Scanner scanner, final int lengthOfList,
 			final Map<Integer, Integer> map) {
 		// final Map<Integer, Integer> map = new HashMap<>();
-		for (int i = 1; i <= lengthOfFirstList; i++) {
+		for (int i = 1; i <= lengthOfList; i++) {
 			if (scanner.hasNextInt()) {
 				final int number = scanner.nextInt();
 				if (map.containsKey(number)) {
