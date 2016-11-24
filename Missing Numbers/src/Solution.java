@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Numeros, the Artist, had two lists A and B, such that B was a permutation of
@@ -19,53 +19,43 @@ public class Solution {
 	public static void main(final String[] args) {
 		final Scanner scanner = new Scanner(System.in);
 		final int lengthOfFirstList = scanner.nextInt();
-		final Map<Integer, Integer> firstListToCount = new HashMap<>();
-		getList(scanner, lengthOfFirstList, firstListToCount);
+		final List<Integer> firstList = new ArrayList<>();
+		getList(scanner, lengthOfFirstList, firstList);
 		final int lengthOfSecondList = scanner.nextInt();
-		final Map<Integer, Integer> secondListToCount = new HashMap<>();
-		getList(scanner, lengthOfSecondList, secondListToCount);
-		// System.out.println(firstListToCount + " " + secondListToCount);
+		final List<Integer> secondList = new ArrayList<>();
+		getList(scanner, lengthOfSecondList, secondList);
+		// System.out.println(firstList + " " + secondList);
 		final int totalCountMissing = lengthOfSecondList - lengthOfFirstList;
-		final List<Integer> listOfMissingNumber = new ArrayList<>();
-		for (int i = 1; i <= lengthOfSecondList; i++) {
-			if (totalCountMissing == listOfMissingNumber.size()) {
+		final Set<Integer> missingNumber = new TreeSet<>();
+		Collections.sort(firstList);
+		Collections.sort(secondList);
+		int counterOfFirstList = 0;
+		for (int i = 0; i < lengthOfSecondList; i++) {
+			if (totalCountMissing == missingNumber.size()) {
 				break;
 			}
-			for (final Integer number : secondListToCount.keySet()) {
-				if (firstListToCount.containsKey(number)) {
-					final int differenceInFrequencyOfNumber = secondListToCount.get(number)
-							- firstListToCount.get(number);
-					if (differenceInFrequencyOfNumber != 0) {
-						// while (differenceInFrequencyOfNumber != 0) {
-						listOfMissingNumber.add(number);
-						// differenceInFrequencyOfNumber--;
-						// }
-					}
-				} else {
-					listOfMissingNumber.add(number);
+			if (counterOfFirstList < lengthOfFirstList) {
+				if (firstList.get(counterOfFirstList).intValue() != secondList.get(i).intValue()) {
+					missingNumber.add(secondList.get(i));
+					counterOfFirstList--;
 				}
+			} else if (counterOfFirstList >= lengthOfFirstList) {
+				missingNumber.add(secondList.get(i));
 			}
-
+			counterOfFirstList++;
 		}
 
-		Collections.sort(listOfMissingNumber);
-		for (final Integer missingNumber : listOfMissingNumber) {
-			System.out.print(missingNumber + " ");
+		for (final Integer number : missingNumber) {
+			System.out.print(number + " ");
 		}
 	}
 
-	private static void getList(final Scanner scanner, final int lengthOfList,
-			final Map<Integer, Integer> map) {
+	private static void getList(final Scanner scanner, final int lengthOfList, final List<Integer> map) {
 		// final Map<Integer, Integer> map = new HashMap<>();
 		for (int i = 1; i <= lengthOfList; i++) {
 			if (scanner.hasNextInt()) {
 				final int number = scanner.nextInt();
-				if (map.containsKey(number)) {
-					final int value = map.get(number);
-					map.put(number, value + 1);
-				} else {
-					map.put(number, 1);
-				}
+				map.add(number);
 			}
 		}
 	}
