@@ -52,4 +52,6 @@ Temporary Items
 *.zip
 *.classpath
 *.prefs
+*.project
+*.gitignore
 
