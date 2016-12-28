@@ -44,4 +44,12 @@ $RECYCLE.BIN/
 .AppleDesktop
 Network Trash Folder
 Temporary Items
+.metadata/
 .apdisk
+*.lock
+*.log
+*.gen
+*.zip
+*.classpath
+*.prefs
+
