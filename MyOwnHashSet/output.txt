@@ -1,0 +1,30 @@
+ PGA ,11340
+ CNET ,11340
+ Microsoft Bing ,11340
+ Google ,11340
+ Yahoo ,11340
+ Oracle ,11340
+ Java ,11340
+ Apple ,11340
+ IBM ,11340
+ Facebook ,11340
+ Twitter ,11340
+ Intel ,11340
+ Qualcomm ,11340
+ Mediatak ,11340
+ ZTE ,11340
+ Xiaomi ,11340
+ eBay ,11340
+ Gearbeat ,11340
+ Samsung ,11340
+ LG ,11340
+ Hyundai ,11340
+ SAP ,11340
+ HP ,11340
+ NEC ,11340
+ DELL ,11340
+ Cisco,11340
+Foobar Candy ,11338
+ Olympics 2012 ,11337
+ Olympics 2016 ,3
+Foobar Randy ,2
